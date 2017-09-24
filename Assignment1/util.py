@@ -2,8 +2,8 @@ from subprocess import check_output
 import numpy as np
 import pylab as pl
 
-total_bytes = 100000000
-block_sizes = [100, 1000, 10000, 100000, 1000000, 1400000, 1800000, 2200000, 2600000, 3000000]
+total_bytes = 100 * 1024 * 1024
+block_sizes = [128, 1024, 4096, 8192, 65536, 131072, 524288, 1048576, 2097152, 3145728]
 file_names = ["block_size_" + str(block_size) + "B.txt" for block_size in block_sizes]
 write_data_rates = [0] * 10
 for i in range(10):
