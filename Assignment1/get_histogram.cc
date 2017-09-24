@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <assert.h>
 #include "library.h"
 
@@ -32,12 +33,15 @@ int main(int argc, char *argv[])
     
   /* Compute the histogram and check the result */
   int ret = get_histogram(file_ptr, hist, block_size, &milliseconds, &filelen);
-  assert(! ret < 0);
+  assert(ret>=0);
 
+  long x = 0;
   /* Print out the result as requested in assignment */
   for(int i=0; i < 26; i++) {
+      x += hist[i];
       printf("%c : %ld\n", 'A' + i, hist[i]);
   }
+  printf("Sum of read %ld \n", x);
   printf("BLOCK SIZE  %ld bytes\n", block_size);
   printf("TOTAL BYTES %ld bytes\n", filelen);
   printf("Time %ld milliseconds.\n", milliseconds);

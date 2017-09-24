@@ -62,8 +62,8 @@ int main(int argc, char *argv[])
   /* Record the end time and report time consumed */
   ftime(&t);
   long end_time = t.time * 1000 + t.millitm;
-  float diff = (float)(end_time - start_time) / 1000;   
-  printf("Time Used: %f\n", diff);   
+  long milliseconds = end_time - start_time;   
+  printf("%ld\n", milliseconds);   
 
   return 0;
 }
