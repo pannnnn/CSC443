@@ -28,7 +28,7 @@ pl.plot(block_sizes, write_data_rates, 'ro', ms=3)
 pl.title('Write Data Rate Versus Block Size')
 # make axis labels
 pl.xlabel('Block Size (Byte)')
-pl.ylabel('Write Data Rates (Byte/Second)')
+pl.ylabel('Write Data Rates (Byte/Second) ' + args.medium.upper())
 # set discontinous points
 pl.xscale('log')
 # show the plot on the screen
