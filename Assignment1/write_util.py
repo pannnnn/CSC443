@@ -14,12 +14,12 @@ block_sizes = [128]*20 + [1024]*20 + [4096]*20 + [8192]*20  + [65536]*20  + [131
 if args.medium == "hdd" or args.medium == "ssd":
     file_names = ["block_size_" + str(block_size) + "B" + str(index) + ".txt" for index, block_size in enumerate(block_sizes)]
 elif args.medium == "usb":
-    usb_path = "/Volumes/UBUNTU 16_0/CSC443/"
+    usb_path = "/Volumes/X/CSC443/"
     file_names = [usb_path + "block_size_" + str(block_size) + "B" + str(index) + ".txt" for index, block_size in enumerate(block_sizes)]
 
 write_data_rates = [0] * 200
 for i in range(200):
-    result = check_output(["./create_random_file", file_names[0], str(total_bytes), str(block_sizes[i])])
+    result = check_output(["./create_random_file", file_names[i], str(total_bytes), str(block_sizes[i])])
     write_data_rates[i] = int(total_bytes / (float(result) / 1000))
 
 # use pylab to plot x and y
@@ -35,6 +35,6 @@ pl.xscale('log')
 if args.medium == "hdd" or args.medium == "ssd":
     pl.savefig('sequential_write.png', bbox_inches='tight')
 elif args.medium == "usb":
-    usb_path = "/Volumes/UBUNTU 16_0/CSC443/"
+    usb_path = "/Volumes/X/CSC443/"
     pl.savefig(usb_path + 'sequential_write.png', bbox_inches='tight')
 # pl.show()
