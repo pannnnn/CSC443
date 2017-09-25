@@ -19,7 +19,7 @@ elif args.medium == "usb":
 
 write_data_rates = [0] * 200
 for i in range(200):
-    result = check_output(["./create_random_file", file_names[i], str(total_bytes), str(block_sizes[i])])
+    result = check_output(["./create_random_file", file_names[0], str(total_bytes), str(block_sizes[i])])
     write_data_rates[i] = int(total_bytes / (float(result) / 1000))
 
 # use pylab to plot x and y
