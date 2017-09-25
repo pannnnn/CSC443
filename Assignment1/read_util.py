@@ -17,24 +17,24 @@ elif args.medium == "usb":
     usb_path = "/Volumes/UBUNTU 16_0/CSC443/"
     file_names = [usb_path + "block_size_" + str(block_size) + "B" + str(index) + ".txt" for index, block_size in enumerate(block_sizes)]
 
-write_data_rates = [0] * 200
-for i in range(1):
-    result = check_output(["./get_histogram", 'a.txt', str(block_sizes[i])])
+read_data_rates = [0] * 200
+for i in range(200):
+    result = check_output(["./get_histogram", file_names[i], str(block_sizes[i])])
     result = result.splitlines()[-1].split()[1]
-    write_data_rates[i] = int(total_bytes / (float(result) / 1000))
+    read_data_rates[i] = int(total_bytes / (float(result) / 1000))
 
 # use pylab to plot x and y
-pl.plot(block_sizes, write_data_rates, 'ro', ms=3)
+pl.plot(block_sizes, read_data_rates, 'ro', ms=3)
 # give plot a title
-pl.title('Write Data Rate Versus Block Size')
+pl.title('Read Data Rate Versus Block Size')
 # make axis labels
 pl.xlabel('Block Size (Byte)')
-pl.ylabel('Write Data Rates (Byte/Second)')
+pl.ylabel('Read Data Rates (Byte/Second)')
 # set discontinous points
 pl.xscale('log')
 # show the plot on the screen
 if args.medium == "hdd" or args.medium == "ssd":
-    pl.savefig('sequential_write.png', bbox_inches='tight')
+    pl.savefig('sequential_read.png', bbox_inches='tight')
 elif args.medium == "usb":
     usb_path = "/Volumes/UBUNTU 16_0/CSC443/"
     pl.savefig(usb_path + 'sequential_read.png', bbox_inches='tight')
