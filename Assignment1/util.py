@@ -16,7 +16,7 @@ file_name = "/Volumes/X/CSC443/data.txt" if args.medium == "usb" else "data.txt"
 
 write_data_rates = [0] * 200
 read_data_rates = [0] * 200
-for i in range(1):
+for i in range(200):
     # calculate write data rates
     write_result = check_output(["./create_random_file", file_name, str(total_bytes), str(block_sizes[i])])
     write_result = write_result.split()[1]
