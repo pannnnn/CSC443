@@ -12,7 +12,7 @@ parser.add_argument("-m", "--medium", default='hdd', choices=["hdd", "ssd", "usb
 args = parser.parse_args()
 total_bytes = 100 * 1024 * 1024
 block_sizes = [128]*20 + [1024]*20 + [4096]*20 + [8192]*20  + [65536]*20  + [131072]*20  + [524288]*20  + [1048576]*20  + [2097152]*20  + [3145728]*20 
-file_name = "/Volumes/X/CSC443/data.txt" if args.medium == "usb" else "data.txt"
+file_name = "/Volumes/x/CSC443/data.txt" if args.medium == "usb" else "data.txt"
 
 write_data_rates = [0] * 200
 read_data_rates = [0] * 200
@@ -41,7 +41,7 @@ pl.xscale('log')
 if args.medium == "hdd" or args.medium == "ssd":
     pl.savefig('sequential_write.png', bbox_inches='tight')
 elif args.medium == "usb":
-    usb_path = "/Volumes/X/CSC443/"
+    usb_path = "/Volumes/x/CSC443/"
     pl.savefig(usb_path + 'sequential_write.png', bbox_inches='tight')
 # pl.show()
 
@@ -61,6 +61,6 @@ pl.xscale('log')
 if args.medium == "hdd" or args.medium == "ssd":
     pl.savefig('sequential_read.png', bbox_inches='tight')
 elif args.medium == "usb":
-    usb_path = "/Volumes/UBUNTU 16_0/CSC443/"
+    usb_path = "/Volumes/x/CSC443/"
     pl.savefig(usb_path + 'sequential_read.png', bbox_inches='tight')
 # pl.show()
