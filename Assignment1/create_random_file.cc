@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
   ftime(&t);
   long end_time = t.time * 1000 + t.millitm;
   long milliseconds = end_time - start_time;   
-  printf("%ld\n", milliseconds);   
+  printf("Time %ld milliseconds.\n", milliseconds);   
 
   return 0;
 }

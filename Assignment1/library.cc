@@ -28,7 +28,6 @@ void random_array(char *array, long bytes)
 int get_histogram(FILE *file_ptr, long hist[], int block_size, long *milliseconds, long *total_bytes_read)
 {
   /* Clear values before using them and allocate buffer */
-  //bzero(hist, sizeof(long)*26);
   memset(hist, 0, sizeof(long)*26);
   *milliseconds = 0;
   *total_bytes_read = 0;
@@ -49,7 +48,6 @@ int get_histogram(FILE *file_ptr, long hist[], int block_size, long *millisecond
     {
       hist[*(buffer+i)-'A']++;
     }
-    //bzero(buffer,sizeof(size_t)*bytes_read);
     memset(buffer, 0, block_size);
     bytes_read = fread(buffer, 1, block_size, file_ptr);
   }
