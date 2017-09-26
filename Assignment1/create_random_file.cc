@@ -38,10 +38,10 @@ int main(int argc, char *argv[])
   long start_time = t.time * 1000 + t.millitm;
 
   /* Write randomly generated letters into file */
+  random_array(buffer, block_size);
   size_t bytes_write;
   while(bytes_left > block_size)
   {
-    random_array(buffer, block_size);
     bytes_write = fwrite(buffer, 1, block_size, file);
     if(bytes_write < block_size){
       fprintf(stderr, "Byte write failed");
@@ -51,7 +51,6 @@ int main(int argc, char *argv[])
     fflush(file);
     bytes_left -= block_size;
   }
-  random_array(buffer, bytes_left);
   bytes_write = fwrite(buffer, 1, bytes_left, file);
   if(bytes_write < bytes_left){
     fprintf(stderr, "Byte write failed");
