@@ -24,14 +24,12 @@ for i in range(300):
     # calculate write data rates
     write_result = check_output(["./create_random_file", file_names[i], str(total_bytes), str(block_sizes[i])])
     write_result = write_result.split()[1]
-    print(write_result)
     write_data_rates[i] = int(total_bytes / (float(write_result) / 1000))
 
 for i in range(300):
     # calculate read data rates
     read_result = check_output(["./get_histogram", file_names[i], str(block_sizes[i])])
     read_result = read_result.splitlines()[-1].split()[1]
-    print(read_result)
     read_data_rates[i] = int(total_bytes / (float(read_result) / 1000))
 
 # Write Plot
