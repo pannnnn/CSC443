@@ -7,25 +7,30 @@ import argparse
 from subprocess import check_output
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-m", "--medium", default='hdd', choices=["hdd", "ssd", "usb"],
-        metavar="['hdd', 'ssd', 'usb']", help="set the storage medium")
+parser.add_argument("-m", "--medium", default='hdd', choices=["hdd", "ssd", "usb"], metavar="['hdd', 'ssd', 'usb']", help="set the storage medium")
+parser.add_argument("-t", "--total_bytes", type=int, default=100, help="set the total size for the file (unit: MBytes)")
 args = parser.parse_args()
-total_bytes = 100 * 1024 * 1024
-block_sizes = [128]*20 + [1024]*20 + [4096]*20 + [8192]*20  + [65536]*20  + [131072]*20  + [524288]*20  + [1048576]*20  + [2097152]*20  + [3145728]*20 
-file_name = "/Volumes/x/CSC443/data.txt" if args.medium == "usb" else "data.txt"
+total_bytes = args.total_bytes * 1024 * 1024
+block_sizes = [128]*30 + [1024]*30 + [4096]*30 + [8192]*30  + [65536]*30  + [131072]*30  + [524288]*30  + [1048576]*30  + [2097152]*30  + [3145728]*30 
+if args.medium == "hdd" or args.medium == "ssd":
+    file_names = ["block_size_" + str(block_size) + "B" + str(index) + ".txt" for index, block_size in enumerate(block_sizes)]
+elif args.medium == "usb":
+    usb_path = "/Volumes/x/CSC443/"
+    file_names = [usb_path + "block_size_" + str(block_size) + "B" + str(index) + ".txt" for index, block_size in enumerate(block_sizes)]
 
-write_data_rates = [0] * 200
-read_data_rates = [0] * 200
-for i in range(200):
+write_data_rates = [0] * 300
+read_data_rates = [0] * 300
+for i in range(300):
     # calculate write data rates
-    write_result = check_output(["./create_random_file", file_name, str(total_bytes), str(block_sizes[i])])
+    write_result = check_output(["./create_random_file", file_names[i], str(total_bytes), str(block_sizes[i])])
     write_result = write_result.split()[1]
     write_data_rates[i] = int(total_bytes / (float(write_result) / 1000))
+
+for i in range(300):
     # calculate read data rates
-    read_result = check_output(["./get_histogram", file_name, str(block_sizes[i])])
+    read_result = check_output(["./get_histogram", file_names[i], str(block_sizes[i])])
     read_result = read_result.splitlines()[-1].split()[1]
     read_data_rates[i] = int(total_bytes / (float(read_result) / 1000))
-    os.remove(file_name)
 
 # Write Plot
 # use pylab to plot x and y
