@@ -1,0 +1,25 @@
+1 . 
+util.py is the script in order to output the data file and plot the diagram, 
+use 'python3 util.py -h' to see the help for this script.
+
+-m is the medium you use to write to and read from. Default is HDD.
+
+-t is the file size. Default is 100 MBytes.
+
+-p is the location you need to specify when you want to write the data to
+external drive like usb or hard drive, no need for hdd or sdd. Default is
+current directory as script. ('/' is needed at the end of the path to specify
+the directory)
+
+Example:
+python util.py -m hdd
+python util.py -m ssd -t 50
+python util.py -m usb -t 100 -p /path/to/your/external/drive/
+
+The script would automatically generate 300 data files which is the result of 
+create_random_file and read from them using get_histogram.
+
+2.
+This scrip is based on cdf and my local machine. Run "make clean" to clean 
+all executables and txt files. If you don't want the plot function, just comment
+it out in the script.
