@@ -1,0 +1,9 @@
+1. Bigtable: A Distributed Storage System for Structured Data
+2. Column-Oriented Databases, an Alternative for Analytical Environment
+3. Comparison and Classification of NoSQL Databases for Big Data
+4. Dynamo: Amazon’s Highly Available Key-value Store
+5. Investigation and Comparison of Distributed NoSQL Database Systems
+6. NoSQL Databases (http://www.christof-strauch.de/nosqldbs)
+7. RDBMS to NoSQL: Reviewing Some Next-Generation Non-Relational Database's  
+8. Relational vs. NoSQL Databases: A Survey
+9. Supply cloud-level data scalability with NoSQL databases
